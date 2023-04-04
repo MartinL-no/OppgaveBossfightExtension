@@ -31,12 +31,12 @@ namespace OppgaveBossfightExtension
 
                 if (Hero.Health == 0)
                 {
-                    Console.WriteLine($"{Boss.Name} is the winner!");
+                    Console.WriteLine($"{Boss._name} is the winner!");
                     break;
                 }
                 else if (Boss.Health == 0)
                 {
-                    Console.WriteLine($"{Hero.Name} is the winner!");
+                    Console.WriteLine($"{Hero._name} is the winner!");
                     break;
                 }
                 isHeroesTurn = !isHeroesTurn;

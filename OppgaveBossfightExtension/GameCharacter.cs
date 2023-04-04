@@ -4,61 +4,61 @@ namespace OppgaveBossfightExtension
 {
     public class GameCharacter
     {
-        public readonly string Name;
+        public readonly string _name;
         public int Health { get; private set; }
-        private readonly int InitialHealth;
-        private int Strength;
-        private int Stamina;
-        private readonly int InitialStamina;
-        private bool Invulnerable;
-        private bool HeightenedStrength;
+        private readonly int _initialHealth;
+        private int _strength;
+        private int _stamina;
+        private readonly int _initialStamina;
+        private bool _invulnerable;
+        private bool _heightenedStrength;
 
         public GameCharacter(string name, int health, int strength, int stamina)
         {
-            Name = name;
+            _name = name;
             Health = health;
-            InitialHealth = health;
-            Strength = strength;
-            Stamina = stamina;
-            InitialStamina = stamina;
-            Invulnerable = false;
-            HeightenedStrength = false;
+            _initialHealth = health;
+            _strength = strength;
+            _stamina = stamina;
+            _initialStamina = stamina;
+            _invulnerable = false;
+            _heightenedStrength = false;
         }
         public void Fight(GameCharacter opponent)
         {
-            if (opponent.Invulnerable)
+            if (opponent._invulnerable)
             {
                 /* 
                  * I have not reduced the attackers stamina while the other character is invulnerable
                  * as the Boss always one with that algorithm.
                  */
-                Console.WriteLine($"{opponent.Name} is invulnerable, {Name}'s attack caused no damage");
-                opponent.Invulnerable = false;
+                Console.WriteLine($"{opponent._name} is invulnerable, {_name}'s attack caused no damage");
+                opponent._invulnerable = false;
             }
-            else if (Stamina == 0)
+            else if (_stamina == 0)
             {
-                Console.WriteLine($"{Name} has no stamina, {opponent.Name} was not attacked");
+                Console.WriteLine($"{_name} has no stamina, {opponent._name} was not attacked");
                 Recharge();
             }
             else
             {
-                opponent.Health = (opponent.Health - Strength) < 0 ? 0 : (opponent.Health - Strength);
-                Stamina  = (Stamina - 10) < 0 ? 0 : (Stamina - 10);
+                opponent.Health = (opponent.Health - _strength) < 0 ? 0 : (opponent.Health - _strength);
+                _stamina  = (_stamina - 10) < 0 ? 0 : (_stamina - 10);
 
-                Console.WriteLine($"{Name} hit {opponent.Name} with {Strength} damage, {opponent.Name} now has {opponent.Health} health left.");
+                Console.WriteLine($"{_name} hit {opponent._name} with {_strength} damage, {opponent._name} now has {opponent.Health} health left.");
 
-                if (HeightenedStrength)
+                if (_heightenedStrength)
                 {
-                    HeightenedStrength = false;
-                    Strength -= 30;
+                    _heightenedStrength = false;
+                    _strength -= 30;
                 }
             }
         }
         public void Recharge()
         {
-            Stamina = InitialStamina;
-            Invulnerable = true;
-            Console.WriteLine($"{Name}'s stamina has been restored to what it was at the start of the fight ({InitialStamina}), {Name} will take no damage during the next attack)");
+            _stamina = _initialStamina;
+            _invulnerable = true;
+            Console.WriteLine($"{_name}'s stamina has been restored to what it was at the start of the fight ({_initialStamina}), {_name} will take no damage during the next attack)");
         }
 
         public void PickupItem(Item item)
@@ -70,13 +70,13 @@ namespace OppgaveBossfightExtension
                     Recharge();
                     break;
                 case "HealthPotion":
-                    Console.WriteLine($"A Health Potion has been dropped and picked up by the Hero, his health is restored to {InitialHealth}");
-                    Health = InitialHealth;
+                    Console.WriteLine($"A Health Potion has been dropped and picked up by the Hero, his health is restored to {_initialHealth}");
+                    Health = _initialHealth;
                     break;
                 case "StrengthPotion":
                     Console.WriteLine("A Strength Potion has been dropped and picked  up by the Hero");
-                    Strength += 30;
-                    HeightenedStrength = true;
+                    _strength += 30;
+                    _heightenedStrength = true;
                     break;
             }
         }
