@@ -4,7 +4,7 @@ namespace OppgaveBossfightExtension
 {
     class Program
     {
-        static Random Rand = new Random();
+        private static Random _rand = new Random();
         private static List<Item> _items;
 
         static void Main(string[] args)
@@ -13,8 +13,8 @@ namespace OppgaveBossfightExtension
         }
         static void RunGame()
         {
-            var randomStrength = Rand.Next(31);
-            var isHeroesTurn = Rand.Next(2) == 1;
+            var randomStrength = _rand.Next(31);
+            var isHeroesTurn = _rand.Next(2) == 1;
             _items = GetRandomListOfItems();
 
             var Hero = new GameCharacter("Hero", 100, 20, 40);
@@ -23,7 +23,7 @@ namespace OppgaveBossfightExtension
             var counter = 1;
             while (true)
             {
-                if (counter % 3 == 0 && Rand.Next(5) == 1)
+                if (counter % 3 == 0 && _rand.Next(5) == 1)
                 {
                     DropItem(Hero);
                 }
@@ -60,7 +60,7 @@ namespace OppgaveBossfightExtension
 
             for (int i = 0; i < 10; i++)
             {
-                var randomItem = Rand.Next(3);
+                var randomItem = _rand.Next(3);
                 Item item;
                 switch (randomItem)
                 {
