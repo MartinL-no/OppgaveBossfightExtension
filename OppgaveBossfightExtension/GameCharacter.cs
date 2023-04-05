@@ -51,6 +51,7 @@ namespace OppgaveBossfightExtension
                 {
                     _heightenedStrength = false;
                     _strength -= 30;
+                    Console.WriteLine("Hero's strength has been restored to it's original level");
                 }
             }
         }
@@ -74,7 +75,7 @@ namespace OppgaveBossfightExtension
                     Health = _initialHealth;
                     break;
                 case "StrengthPotion":
-                    Console.WriteLine("A Strength Potion has been dropped and picked  up by the Hero");
+                    Console.WriteLine("A Strength Potion has been dropped and picked up by the Hero, his strength has been increased by 30 for one round");
                     _strength += 30;
                     _heightenedStrength = true;
                     break;
